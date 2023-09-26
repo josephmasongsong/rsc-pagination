@@ -1,15 +1,13 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-type Photo = {
+type Musician = {
   id: string;
-  albumId: string;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
+  name: string;
+  genre: string;
+  sex: string;
 };
 
-async function getPhotos({ page = 1, limit = 5 }: { page: number; limit: number }) {
+async function getMusicians({ page = 1, limit = 6 }: { page: number; limit: number }) {
   const res = await fetch(
     `https://my-json-server.typicode.com/josephmasongsong/rsc-pagination/musicians?_page=${page}&_limit=${limit}`
   );
@@ -22,20 +20,30 @@ export default async function Home({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const page = typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
-  const limit = typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
+  const limit = typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 6;
 
-  const photos = await getPhotos({ page, limit });
+  const musicians = await getMusicians({ page, limit });
 
   return (
     <main>
-      <div className="mx-auto max-w-7xl grid grid-cols-5 gap-y-12 justify-between p-24">
-        {photos.map((photo: Photo) => (
-          <div key={photo.id}>
-            <Image src={photo.thumbnailUrl} width={150} height={150} alt={photo.id} />
-            <div>Id: {photo.id}</div>
+      <div className="mx-auto max-w-7xl grid grid-cols-3 gap-12 justify-between p-24">
+        {musicians.map((musician: Musician) => (
+          <div key={musician.id}>
+            <div>
+              <strong>Id:</strong> {musician.id}
+            </div>
+            <div>
+              <strong>Name:</strong> {musician.name}
+            </div>
+            <div>
+              <strong>Sex:</strong> {musician.sex}
+            </div>
+            <div>
+              <strong>Genre:</strong> {musician.genre}
+            </div>
           </div>
         ))}
-        <div className="justify-between col-span-5 flex">
+        <div className="justify-between col-span-3 flex">
           <Link
             href={{
               pathname: '/',
