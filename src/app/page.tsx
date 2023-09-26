@@ -10,7 +10,9 @@ type Photo = {
 };
 
 async function getPhotos({ page = 1, limit = 5 }: { page: number; limit: number }) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${limit}`);
+  const res = await fetch(
+    `https://my-json-server.typicode.com/josephmasongsong/rsc-pagination/musicians?_page=${page}&_limit=${limit}`
+  );
   return res.json();
 }
 
