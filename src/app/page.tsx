@@ -1,5 +1,7 @@
 import Pagination from './components/pagination';
 
+export const dynamic = 'force-dynamic';
+
 type Musician = {
   id: string;
   name: string;
