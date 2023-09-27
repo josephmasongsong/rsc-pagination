@@ -30,6 +30,5 @@
     { "id": 28, "name": "Harriet Dicki", "sex": "male", "genre": "Folk" },
     { "id": 29, "name": "Susan Donnelly", "sex": "male", "genre": "Jazz" },
     { "id": 30, "name": "Kate Hickle", "sex": "male", "genre": "Soul" }
-  ],
-  "total_musicians": 30
+  ]
 }
