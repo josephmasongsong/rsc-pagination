@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Pagination from './components/pagination';
 
 type Musician = {
   id: string;
@@ -43,25 +43,7 @@ export default async function Home({
             </div>
           </div>
         ))}
-        <div className="justify-between col-span-3 flex">
-          <Link
-            href={{
-              pathname: '/',
-              query: { page: page > 1 ? page - 1 : 1 },
-            }}
-          >
-            Previous
-          </Link>
-
-          <Link
-            href={{
-              pathname: '/',
-              query: { page: page + 1 },
-            }}
-          >
-            Next
-          </Link>
-        </div>
+        <Pagination page={page} numPages={Math.ceil(30 / limit)} />
       </div>
     </main>
   );
